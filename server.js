@@ -17,12 +17,11 @@ const saltRounds = Number(process.env.SALT_ROUNDS);
 
 app.use(express.json());
 app.use(cors({
-    origin: [
+    origin: '*'
         /*'https://jpxl-auth.onrender.com/',
         'http://localhost:3000',
         '216.24.57.253',*/
-        '*'
-    ]
+    
 }));
 app.use(cookieParser());
 
