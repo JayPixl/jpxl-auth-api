@@ -22,9 +22,7 @@ app.use(cors({
         'http://localhost:3000',
         '216.24.57.253',*/
         '*'
-    ], 
-    credentials: true,
-    optionsSuccessStatus: 200
+    ]
 }));
 app.use(cookieParser());
 
