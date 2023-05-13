@@ -22,6 +22,7 @@ router.post('/login', async (req, res) => {
             res.status(errcode).json({err});
         } else {
             const accessToken = jwt.sign({username: dbmatch.username}, process.env.ACCESS_TOKEN_SECRET);
+            console.log(`Login request: ${req.body}`);
             res.json({ accessToken });
         }
     })
@@ -41,6 +42,7 @@ router.post('/new', async (req, res) => {
             newUser.save();
 
             const accessToken = jwt.sign({username: newUser.username}, process.env.ACCESS_TOKEN_SECRET);
+            console.log(`Signup request: ${req.body}`);
             res.status(201).json({ accessToken });
         })
         
@@ -56,6 +58,7 @@ router.post('/auth', async (req, res) => {
         if (err) return res.status(403).json({err: 'Access Token is invalid'});
 
         const [ match ] = await User.find({ username: { $regex: user.username, $options: 'i' } });
+        console.log(`Auth request: ${req.body}`);
         res.json(match);
     })
 })
